@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Shary's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="hexo-generator-feed Generate Atom 1.0 or RSS 2.0 feed. Install1$ npm install hexo-generator-feed --save   Hexo 4: 2.x Hexo 3: 1.x Hexo 2: 0.x  UseIn the front-matter of your post, you can optionally a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shary&#39;s Blog">
+<meta property="og:url" content="http://example.com/node_modules/hexo-generator-feed/README.html">
+<meta property="og:site_name" content="Shary&#39;s Blog">
+<meta property="og:description" content="hexo-generator-feed Generate Atom 1.0 or RSS 2.0 feed. Install1$ npm install hexo-generator-feed --save   Hexo 4: 2.x Hexo 3: 1.x Hexo 2: 0.x  UseIn the front-matter of your post, you can optionally a">
+<meta property="og:locale">
+<meta property="og:image" content="https://travis-ci.org/hexojs/hexo-generator-feed.svg?branch=master">
+<meta property="og:image" content="https://badge.fury.io/js/hexo-generator-feed.svg">
+<meta property="og:image" content="https://img.shields.io/coveralls/hexojs/hexo-generator-feed.svg">
+<meta property="article:published_time" content="2023-02-08T06:56:41.611Z">
+<meta property="article:modified_time" content="1985-10-26T08:15:00.000Z">
+<meta property="article:author" content="SharyL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://travis-ci.org/hexojs/hexo-generator-feed.svg?branch=master">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/node_modules/hexo-generator-feed/README.html"/>
+
+
+
+
+
+  <title>Java单元测试的一些方法 | Shary's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shary's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">For Code, For Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/26/Java%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shary's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java单元测试的一些方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-26T09:17:02+08:00">2022-07-26</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本站访客数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>人次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">62k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">2:35</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><p>最近项目中考察单元测试覆盖率，一段探索后用到了mock工具。PowerMock是一个集成了其他mock方法的强大框架。PowerMock使用一个自定义类加载器和字节码操作来模拟静态方法、构造方法、final类和方法、私有方法、去除静态初始化器等等。  </p>
+</li>
+<li><p>简单列一下项目中用到的方法。  </p>
+</li>
+<li></li>
+<li><p>声明：  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T PowerMockito.mock(Class clazz);</span><br></pre></td></tr></table></figure></li>
+<li><p>用途：<br>可以用于模拟指定类的对象实例。<br>当模拟非final类（接口、普通类、[虚基类]的非final方法时，不必使用@RunWith和@PrepareForTest注解。  </p>
+</li>
+<li><p>当模拟final类或final方法时，必须使用@RunWith和@PrepareForTest注解。注解形如：<br>@RunWith(PowerMockRunner.class)<br>@PrepareForTest({TargetClass.class})  </p>
+</li>
+<li></li>
+<li><h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2></li>
+<li><h3 id="RunWith注解"><a href="#RunWith注解" class="headerlink" title="@RunWith注解"></a>@RunWith注解</h3><p>@RunWith(PowerMockRunner.class)  </p>
+<p>指定JUnit 使用 PowerMock 框架中的单元测试运行器。  </p>
+</li>
+<li><h3 id="PrepareForTest注解"><a href="#PrepareForTest注解" class="headerlink" title="@PrepareForTest注解"></a>@PrepareForTest注解</h3><p>@PrepareForTest({ TargetClass.class })  </p>
+<p>当需要模拟final类、<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=final%E6%96%B9%E6%B3%95&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1781246366%7D">final方法</a>或静态方法时，需要添加@PrepareForTest注解，并指定方法所在的类。如果需要指定多个类，在{}中添加多个类并用逗号隔开即可。  </p>
+</li>
+<li><h3 id="Mock注解"><a href="#Mock注解" class="headerlink" title="@Mock注解"></a>@Mock注解</h3><p>@Mock注解创建了一个全部Mock的实例，所有属性和方法全被置空（0或者null）。  </p>
+</li>
+<li><h3 id="Spy注解"><a href="#Spy注解" class="headerlink" title="@Spy注解"></a>@Spy注解</h3><p>@Spy注解创建了一个没有Mock的实例，所有成员方法都会按照原方法的逻辑执行，直到被Mock返回某个具体的值为止。  </p>
+<p>注意：@Spy注解的变量需要被初始化，否则执行时会抛出异常。  </p>
+</li>
+<li><h3 id="InjectMocks注解"><a href="#InjectMocks注解" class="headerlink" title="@InjectMocks注解"></a>@InjectMocks注解</h3><p>@InjectMocks注解创建一个实例，这个实例可以调用真实代码的方法，其余用@Mock或@Spy注解创建的实例将被注入到用该实例中。  </p>
+</li>
+<li><h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2></li>
+<li><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">用List举例模拟一个不存在的列表,但是返回的列表大小为100。</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testSize() &#123;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List list = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.when(list.size()).thenReturn(expected);</span><br><span class="line">        Integer actual  = list.size();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="非final类"><a href="#非final类" class="headerlink" title="非final类"></a>非final类</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Getter</span><br><span class="line">@Setter</span><br><span class="line">@ToString</span><br><span class="line">public class Rectangle implements Sharp &#123;</span><br><span class="line">    private double width;</span><br><span class="line">    private double height;</span><br><span class="line">    @Override</span><br><span class="line">    public double getArea() &#123;</span><br><span class="line">        return width * height;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class RectangleTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetArea() &#123;</span><br><span class="line">        double expectArea = 100.0D;</span><br><span class="line">        Rectangle rectangle = PowerMockito.mock(Rectangle.class);</span><br><span class="line">        PowerMockito.when(rectangle.getArea()).thenReturn(expectArea);</span><br><span class="line">        double actualArea = rectangle.getArea();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expectArea, actualArea, 1E-6D);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@Getter</span><br><span class="line">@Setter</span><br><span class="line">@ToString</span><br><span class="line">public final class Circle &#123;</span><br><span class="line">    private double radius;</span><br><span class="line">    public double getArea() &#123;</span><br><span class="line">        return Math.PI * Math.pow(radius, 2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;Circle.class&#125;)</span><br><span class="line">public class CircleTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetArea() &#123;</span><br><span class="line">        double expectArea = 3.14D;</span><br><span class="line">        Circle circle = PowerMockito.mock(Circle.class);</span><br><span class="line">        PowerMockito.when(circle.getArea()).thenReturn(expectArea);</span><br><span class="line">        double actualArea = circle.getArea();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expectArea, actualArea, 1E-6D);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="mockStatic模拟静态方法"><a href="#mockStatic模拟静态方法" class="headerlink" title="mockStatic模拟静态方法"></a>mockStatic模拟静态方法</h3></li>
+<li><p>声明：  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PowerMockito.mockStatic(Class clazz);</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><p>可以用于模拟类的静态方法，必须使用“@RunWith”和“@PrepareForTest”注解。  </p>
+</li>
+<li></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;StringUtils.class&#125;)</span><br><span class="line">public class StringUtilsTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsEmpty() &#123;</span><br><span class="line">        String string = &quot;abc&quot;;</span><br><span class="line">        boolean expected = true;</span><br><span class="line">        PowerMockito.mockStatic(StringUtils.class);</span><br><span class="line">        PowerMockito.when(StringUtils.isEmpty(string)).thenReturn(expected);</span><br><span class="line">        boolean actual = StringUtils.isEmpty(string);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="Spy"><a href="#Spy" class="headerlink" title="Spy"></a>Spy</h3></li>
+<li><p>spy可模拟部分方法，其他方法和原有保持一致。  </p>
+</li>
+<li></li>
+<li><p>对类处理：  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">PowerMockito.spy(Class clazz)；</span><br><span class="line"></span><br><span class="line">用于模拟类的部分方法。</span><br><span class="line"></span><br><span class="line">public class StringUtils &#123;</span><br><span class="line">    public static boolean isNotEmpty(final CharSequence cs) &#123;</span><br><span class="line">        return !isEmpty(cs);</span><br><span class="line">    &#125;</span><br><span class="line">    public static boolean isEmpty(final CharSequence cs) &#123;</span><br><span class="line">        return cs == null || cs.length() == 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;StringUtils.class&#125;)</span><br><span class="line">public class StringUtilsTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsNotEmpty() &#123;</span><br><span class="line">        String string = null;</span><br><span class="line">        boolean expected = true;</span><br><span class="line">        PowerMockito.spy(StringUtils.class);</span><br><span class="line">        PowerMockito.when(StringUtils.isEmpty(string)).thenReturn(!expected);</span><br><span class="line">        boolean actual = StringUtils.isNotEmpty(string);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>对对象处理：  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">T PowerMockito.spy(T object)；</span><br><span class="line"></span><br><span class="line">用于模拟对象的部分方法。</span><br><span class="line"></span><br><span class="line">public class UserService &#123;</span><br><span class="line">    private Long superUserId;</span><br><span class="line">    public boolean isNotSuperUser(Long userId) &#123;</span><br><span class="line">        return !isSuperUser(userId);</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isSuperUser(Long userId) &#123;</span><br><span class="line">        return Objects.equals(userId, superUserId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsNotSuperUser() &#123;</span><br><span class="line">        Long userId = 1L;</span><br><span class="line">        boolean expected = false;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.when(userService.isSuperUser(userId)).thenReturn(!expected);</span><br><span class="line">        boolean actual = userService.isNotSuperUser(userId);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h2 id="两种mock模式"><a href="#两种mock模式" class="headerlink" title="两种mock模式"></a>两种mock模式</h2></li>
+<li><p>1.when().thenReturn()模式  </p>
+</li>
+<li><p>2.doReturn().when()模式  </p>
+</li>
+<li></li>
+<li><h3 id="when-thenReturn-模式"><a href="#when-thenReturn-模式" class="headerlink" title="when().thenReturn()模式"></a>when().thenReturn()模式</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PowerMockito.when(mockObject.someMethod(someArgs)).thenReturn(expectedValue);</span><br><span class="line">PowerMockito.when(mockObject.someMethod(someArgs)).thenThrow(expectedThrowable);</span><br><span class="line">PowerMockito.when(mockObject.someMethod(someArgs)).thenAnswer(expectedAnswer);</span><br><span class="line">PowerMockito.when(mockObject.someMethod(someArgs)).thenCallRealMethod();</span><br><span class="line"></span><br><span class="line">用于模拟对象方法，先执行原始方法，再返回期望的值、异常、应答，或调用真实的方法。</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">返回期望值</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 0;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.when(mockList.get(index)).thenReturn(expected);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回期望异常</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test(expected = IndexOutOfBoundsException.class)</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = -1;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.when(mockList.get(index)).thenThrow(new IndexOutOfBoundsException());</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回期望应答</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 1;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.when(mockList.get(index)).thenAnswer(invocation -&gt; &#123;</span><br><span class="line">            Integer value = invocation.getArgument(0);</span><br><span class="line">            return value * 100;</span><br><span class="line">        &#125;);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回真实方法</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 0;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; oldList = new ArrayList&lt;&gt;();</span><br><span class="line">        oldList.add(expected);</span><br><span class="line">        List&lt;Integer&gt; spylist = PowerMockito.spy(oldList);</span><br><span class="line">        PowerMockito.when(spylist.get(index)).thenCallRealMethod();</span><br><span class="line">        Integer actual = spylist.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="doReturn-when-模式"><a href="#doReturn-when-模式" class="headerlink" title="doReturn().when()模式"></a>doReturn().when()模式</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">声明：</span><br><span class="line">PowerMockito.doReturn(expectedValue).when(mockObject).someMethod(someArgs);</span><br><span class="line">PowerMockito.doThrow(expectedThrowable).when(mockObject).someMethod(someArgs);</span><br><span class="line">PowerMockito.doAnswer(expectedAnswer).when(mockObject).someMethod(someArgs);</span><br><span class="line">PowerMockito.doNothing().when(mockObject).someMethod(someArgs);</span><br><span class="line">PowerMockito.doCallRealMethod().when(mockObject).someMethod(someArgs);</span><br><span class="line">用途：</span><br><span class="line">用于模拟对象方法，直接返回期望的值、异常、应答，或调用真实的方法，无需执行原始方法。</span><br><span class="line">注意：</span><br><span class="line">千万不要使用以下语法：</span><br><span class="line">PowerMockito.doReturn(expectedValue).when(mockObject.someMethod(someArgs));</span><br><span class="line">PowerMockito.doThrow(expectedThrowable).when(mockObject.someMethod(someArgs));</span><br><span class="line">PowerMockito.doAnswer(expectedAnswer).when(mockObject.someMethod(someArgs));</span><br><span class="line">PowerMockito.doNothing().when(mockObject.someMethod(someArgs));</span><br><span class="line">PowerMockito.doCallRealMethod().when(mockObject.someMethod(someArgs));</span><br><span class="line">虽然不会出现编译错误，但是在执行时会抛出UnfinishedStubbingException异常。</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">返回期望值</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 0;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doReturn(expected).when(mockList).get(index);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回期望异常</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test(expected = IndexOutOfBoundsException.class)</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = -1;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doThrow(new IndexOutOfBoundsException()).when(mockList).get(index);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">返回期望应答</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 1;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doAnswer(invocation -&gt; &#123;</span><br><span class="line">            Integer value = invocation.getArgument(0);</span><br><span class="line">            return value * 100;</span><br><span class="line">        &#125;).when(mockList).get(index);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">无返回值</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testClear() &#123;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doNothing().when(mockList).clear();</span><br><span class="line">        mockList.clear();</span><br><span class="line">        Mockito.verify(mockList).clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">调用真实方法</span><br><span class="line"></span><br><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 0;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; oldList = new ArrayList&lt;&gt;();</span><br><span class="line">        oldList.add(expected);</span><br><span class="line">        List&lt;Integer&gt; spylist = PowerMockito.spy(oldList);</span><br><span class="line">        PowerMockito.doCallRealMethod().when(spylist).get(index);</span><br><span class="line">        Integer actual = spylist.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="两种模式主要区别"><a href="#两种模式主要区别" class="headerlink" title="两种模式主要区别"></a>两种模式主要区别</h3><ul>
+<li>两种模式都用于模拟对象方法，在mock实例下使用时，基本上是没有差别的。但是，在spy实例下使用时，when().thenReturn()模式会执行原方法，而doReturn().when()模式不会执行原方法。</li>
+</ul>
+</li>
+<li><p>eg:  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line"> </span><br><span class="line">@Service</span><br><span class="line">public class UserService &#123;</span><br><span class="line">    public long getUserCount() &#123;</span><br><span class="line">        log.info(&quot;调用获取用户数量方法&quot;);</span><br><span class="line">        return 0L;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><p>when().thenReturn()  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetUserCount() &#123;</span><br><span class="line">        Long expected = 1000L;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.when(userService.getUserCount()).thenReturn(expected);</span><br><span class="line">        Long actual = userService.getUserCount();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//将会打印出&quot;调用获取用户数量方法&quot;日志</span><br></pre></td></tr></table></figure></li>
+<li><p>doReturn().when()  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetUserCount() &#123;</span><br><span class="line">        Long expected = 1000L;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.doReturn(expected).when(userService).getUserCount();</span><br><span class="line">        Long actual = userService.getUserCount();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//不会打印</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="whenNew模拟构造方法"><a href="#whenNew模拟构造方法" class="headerlink" title="whenNew模拟构造方法"></a>whenNew模拟构造方法</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PowerMockito.whenNew(MockClass.class).withNoArguments().thenReturn(expectedObject);</span><br><span class="line">PowerMockito.whenNew(MockClass.class).withArguments(someArgs).thenReturn(expectedObject);</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><p>需要加上注解@PrepareForTest({FileUtils.class})，否则模拟方法不生效。  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public final class FileUtils &#123;</span><br><span class="line">    public static boolean isFile(String fileName) &#123;</span><br><span class="line">        return new File(fileName).isFile();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;FileUtils.class&#125;)</span><br><span class="line">public class FileUtilsTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsFile() throws Exception &#123;</span><br><span class="line">        String fileName = &quot;test.txt&quot;;</span><br><span class="line">        File file = PowerMockito.mock(File.class);</span><br><span class="line">        PowerMockito.whenNew(File.class).withArguments(fileName).thenReturn(file);</span><br><span class="line">        PowerMockito.when(file.isFile()).thenReturn(true);</span><br><span class="line">        Assert.assertTrue(&quot;返回值为假&quot;, FileUtils.isFile(fileName));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h2 id="参数匹配器"><a href="#参数匹配器" class="headerlink" title="参数匹配器"></a>参数匹配器</h2></li>
+<li><h3 id="参数匹配器-any"><a href="#参数匹配器-any" class="headerlink" title="参数匹配器(any)"></a>参数匹配器(any)</h3><p>Mockito提供Mockito.anyInt()、Mockito.anyString、Mockito.any(Class clazz)等来表示任意值。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        int index = 1;</span><br><span class="line">        Integer expected = 100;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.when(mockList.get(Mockito.anyInt())).thenReturn(expected);</span><br><span class="line">        Integer actual = mockList.get(index);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="参数匹配器-eq"><a href="#参数匹配器-eq" class="headerlink" title="参数匹配器(eq)"></a>参数匹配器(eq)</h3></li>
+<li></li>
+<li><p>当我们使用参数匹配器时，所有参数都应使用匹配器。 如果要为某一参数指定特定值时，就需要使用Mockito.eq()方法。  </p>
+</li>
+<li></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;StringUtils.class&#125;)</span><br><span class="line">public class StringUtilsTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testStartWith() &#123;</span><br><span class="line">        String string = &quot;abc&quot;;</span><br><span class="line">        String prefix = &quot;b&quot;;</span><br><span class="line">        boolean expected = true;</span><br><span class="line">        PowerMockito.spy(StringUtils.class);</span><br><span class="line">        PowerMockito.when(StringUtils.startsWith(Mockito.anyString(), Mockito.eq(prefix))).thenReturn(expected);</span><br><span class="line">        boolean actual = StringUtils.startsWith(string, prefix);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h2 id="verify语句"><a href="#verify语句" class="headerlink" title="verify语句"></a>verify语句</h2><p>验证是确认在模拟过程中，被测试方法是否已按预期方式与其任何依赖方法进行了交互。  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mockito.verify(mockObject[,times(int)]).someMethod(somgArgs);</span><br></pre></td></tr></table></figure>
+<p>用于模拟对象方法，直接返回期望的值、异常、应答，或调用真实的方法，无需执行原始方法。  </p>
+</li>
+<li></li>
+<li><h3 id="验证调用方法"><a href="#验证调用方法" class="headerlink" title="验证调用方法"></a>验证调用方法</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doNothing().when(mockList).clear();</span><br><span class="line">        mockList.clear();</span><br><span class="line">        Mockito.verify(mockList).clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="验证调用次数"><a href="#验证调用次数" class="headerlink" title="验证调用次数"></a>验证调用次数</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGet() &#123;</span><br><span class="line">        List&lt;Integer&gt; mockList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doNothing().when(mockList).clear();</span><br><span class="line">        mockList.clear();</span><br><span class="line">        Mockito.verify(mockList, Mockito.times(1)).clear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//除times外，Mockito还支持atLeastOnce、atLeast、only、atMostOnce、atMost等次数验证器。</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h3 id="验证调用顺序"><a href="#验证调用顺序" class="headerlink" title="验证调用顺序"></a>验证调用顺序</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testAdd() &#123;</span><br><span class="line">           List&lt;Integer&gt; mockedList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doReturn(true).when(mockedList).add(Mockito.anyInt());</span><br><span class="line">        mockedList.add(1);</span><br><span class="line">        mockedList.add(2);</span><br><span class="line">        mockedList.add(3);</span><br><span class="line">        InOrder inOrder = Mockito.inOrder(mockedList);</span><br><span class="line">        inOrder.verify(mockedList).add(1);</span><br><span class="line">        inOrder.verify(mockedList).add(2);</span><br><span class="line">        inOrder.verify(mockedList).add(3);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="验证调用参数"><a href="#验证调用参数" class="headerlink" title="验证调用参数"></a>验证调用参数</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testArgumentCaptor() &#123;</span><br><span class="line">        Integer[] expecteds = new Integer[] &#123;1, 2, 3&#125;;</span><br><span class="line">        List&lt;Integer&gt; mockedList = PowerMockito.mock(List.class);</span><br><span class="line">        PowerMockito.doReturn(true).when(mockedList).add(Mockito.anyInt());</span><br><span class="line">        for (Integer expected : expecteds) &#123;</span><br><span class="line">            mockedList.add(expected);</span><br><span class="line">        &#125;</span><br><span class="line">        ArgumentCaptor&lt;Integer&gt; argumentCaptor = ArgumentCaptor.forClass(Integer.class);</span><br><span class="line">        Mockito.verify(mockedList, Mockito.times(3)).add(argumentCaptor.capture());</span><br><span class="line">        Integer[] actuals = argumentCaptor.getAllValues().toArray(new Integer[0]);</span><br><span class="line">        Assert.assertArrayEquals(&quot;返回值不相等&quot;, expecteds, actuals);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="验证调用完毕"><a href="#验证调用完毕" class="headerlink" title="验证调用完毕"></a>验证调用完毕</h3></li>
+<li><p>Mockito提供Mockito.verifyNoMoreInteractions方法，在所有验证方法之后可以使用此方法，以确保所有调用都得到验证。如果模拟对象上存在任何未验证的调用，将会抛出NoInteractionsWanted异常。  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ListTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testVerifyNoMoreInteractions() &#123;</span><br><span class="line">        List&lt;Integer&gt; mockedList = PowerMockito.mock(List.class);</span><br><span class="line">        Mockito.verifyNoMoreInteractions(mockedList); // 执行正常</span><br><span class="line">        mockedList.isEmpty();</span><br><span class="line">        Mockito.verifyNoMoreInteractions(mockedList); // 抛出异常</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="验证静态方法"><a href="#验证静态方法" class="headerlink" title="验证静态方法"></a>验证静态方法</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;StringUtils.class&#125;)</span><br><span class="line">public class StringUtilsTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testVerifyStatic() &#123;</span><br><span class="line">        PowerMockito.mockStatic(StringUtils.class);</span><br><span class="line">        String expected = &quot;abc&quot;;</span><br><span class="line">        StringUtils.isEmpty(expected);</span><br><span class="line">        PowerMockito.verifyStatic(StringUtils.class);</span><br><span class="line">        ArgumentCaptor&lt;String&gt; argumentCaptor = ArgumentCaptor.forClass(String.class);</span><br><span class="line">        StringUtils.isEmpty(argumentCaptor.capture());</span><br><span class="line">        Assert.assertEquals(&quot;参数不相等&quot;, argumentCaptor.getValue(), expected);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+<li><h2 id="private属性处理"><a href="#private属性处理" class="headerlink" title="private属性处理"></a>private属性处理</h2></li>
+<li><h3 id="ReflectionTestUtils-setField方法"><a href="#ReflectionTestUtils-setField方法" class="headerlink" title="ReflectionTestUtils.setField方法"></a>ReflectionTestUtils.setField方法</h3><p>在用原生JUnit进行单元测试时，我们一般采用ReflectionTestUtils.setField方法设置私有属性值  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserService &#123;</span><br><span class="line">    @Value(&quot;$&#123;system.userLimit&#125;&quot;)</span><br><span class="line">    private Long userLimit;</span><br><span class="line">    public Long getUserLimit() &#123;</span><br><span class="line">        return userLimit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Autowired</span><br><span class="line">    private UserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetUserLimit() &#123;</span><br><span class="line">        Long expected = 1000L;</span><br><span class="line">        ReflectionTestUtils.setField(userService, &quot;userLimit&quot;, expected);</span><br><span class="line">        Long actual = userService.getUserLimit();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="Whitebox-setInternalState方法"><a href="#Whitebox-setInternalState方法" class="headerlink" title="Whitebox.setInternalState方法"></a>Whitebox.setInternalState方法</h3><p>现在使用PowerMock进行单元测试时，可以采用Whitebox.setInternalState方法设置私有属性值。  </p>
+</li>
+<li><p>需要加上注解@RunWith(PowerMockRunner.class)。  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class UserService &#123;</span><br><span class="line">    @Value(&quot;$&#123;system.userLimit&#125;&quot;)</span><br><span class="line">    private Long userLimit;</span><br><span class="line">    public Long getUserLimit() &#123;</span><br><span class="line">        return userLimit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @InjectMocks</span><br><span class="line">    private UserService userService;</span><br><span class="line">    @Test</span><br><span class="line">    public void testGetUserLimit() &#123;</span><br><span class="line">        Long expected = 1000L;</span><br><span class="line">        Whitebox.setInternalState(userService, &quot;userLimit&quot;, expected);</span><br><span class="line">        Long actual = userService.getUserLimit();</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h2 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h2></li>
+<li><h3 id="when方式"><a href="#when方式" class="headerlink" title="when方式"></a>when方式</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class UserService &#123;</span><br><span class="line">    private Long superUserId;</span><br><span class="line">    public boolean isNotSuperUser(Long userId) &#123;</span><br><span class="line">        return !isSuperUser(userId);</span><br><span class="line">    &#125;</span><br><span class="line">    private boolean isSuperUser(Long userId) &#123;</span><br><span class="line">        return Objects.equals(userId, superUserId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;UserService.class&#125;)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsNotSuperUser() throws Exception &#123;</span><br><span class="line">        Long userId = 1L;</span><br><span class="line">        boolean expected = false;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.when(userService, &quot;isSuperUser&quot;, userId).thenReturn(!expected);</span><br><span class="line">        boolean actual = userService.isNotSuperUser(userId);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="stub实现"><a href="#stub实现" class="headerlink" title="stub实现"></a>stub实现</h3><p>通过模拟方法stub(存根)，也可以实现模拟私有方法。但是，只能模拟整个方法的返回值，而不能模拟指定参数的返回值。  </p>
+</li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;UserService.class&#125;)</span><br><span class="line">public class UserServiceTest &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsNotSuperUser() throws Exception &#123;</span><br><span class="line">        Long userId = 1L;</span><br><span class="line">        boolean expected = false;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.stub(PowerMockito.method(UserService.class, &quot;isSuperUser&quot;, Long.class)).toReturn(!expected);</span><br><span class="line">        boolean actual = userService.isNotSuperUser(userId);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="测试私有方法"><a href="#测试私有方法" class="headerlink" title="测试私有方法"></a>测试私有方法</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">public class UserServiceTest9 &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsSuperUser() throws Exception &#123;</span><br><span class="line">        Long userId = 1L;</span><br><span class="line">        boolean expected = false;</span><br><span class="line">        UserService userService = new UserService();</span><br><span class="line">        Method method = PowerMockito.method(UserService.class, &quot;isSuperUser&quot;, Long.class);</span><br><span class="line">        Object actual = method.invoke(userService, userId);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><h3 id="验证私有方法"><a href="#验证私有方法" class="headerlink" title="验证私有方法"></a>验证私有方法</h3></li>
+<li>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@RunWith(PowerMockRunner.class)</span><br><span class="line">@PrepareForTest(&#123;UserService.class&#125;)</span><br><span class="line">public class UserServiceTest10 &#123;</span><br><span class="line">    @Test</span><br><span class="line">    public void testIsNotSuperUser() throws Exception &#123;</span><br><span class="line">        Long userId = 1L;</span><br><span class="line">        boolean expected = false;</span><br><span class="line">        UserService userService = PowerMockito.spy(new UserService());</span><br><span class="line">        PowerMockito.when(userService, &quot;isSuperUser&quot;, userId).thenReturn(!expected);</span><br><span class="line">        boolean actual = userService.isNotSuperUser(userId);</span><br><span class="line">        PowerMockito.verifyPrivate(userService).invoke(&quot;isSuperUser&quot;, userId);</span><br><span class="line">        Assert.assertEquals(&quot;返回值不相等&quot;, expected, actual);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Code/" rel="tag"># Code</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/2018/" rel="next" title="2018,第一篇自己的博客">
+                <i class="fa fa-chevron-left"></i> 2018,第一篇自己的博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/02/08/2023%E5%B9%B4%E7%AC%AC%E4%B8%80%E7%AF%87/" rel="prev" title="2023,一切重新开始。">
+                2023,一切重新开始。 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Moingpony" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:Shary_leey@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RunWith%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.1.</span> <span class="nav-text">@RunWith注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PrepareForTest%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.2.</span> <span class="nav-text">@PrepareForTest注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mock%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">@Mock注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spy%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.4.</span> <span class="nav-text">@Spy注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InjectMocks%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.5.</span> <span class="nav-text">@InjectMocks注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">2.1.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9Efinal%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">非final类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">final类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mockStatic%E6%A8%A1%E6%8B%9F%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">mockStatic模拟静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spy"><span class="nav-number">2.5.</span> <span class="nav-text">Spy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8Dmock%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">两种mock模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#when-thenReturn-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">when().thenReturn()模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#doReturn-when-%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">doReturn().when()模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB"><span class="nav-number">3.3.</span> <span class="nav-text">两种模式主要区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whenNew%E6%A8%A1%E6%8B%9F%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">3.4.</span> <span class="nav-text">whenNew模拟构造方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%B9%E9%85%8D%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">参数匹配器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%B9%E9%85%8D%E5%99%A8-any"><span class="nav-number">4.1.</span> <span class="nav-text">参数匹配器(any)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%B9%E9%85%8D%E5%99%A8-eq"><span class="nav-number">4.2.</span> <span class="nav-text">参数匹配器(eq)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#verify%E8%AF%AD%E5%8F%A5"><span class="nav-number">5.</span> <span class="nav-text">verify语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">验证调用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%B0%83%E7%94%A8%E6%AC%A1%E6%95%B0"><span class="nav-number">5.2.</span> <span class="nav-text">验证调用次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%B0%83%E7%94%A8%E9%A1%BA%E5%BA%8F"><span class="nav-number">5.3.</span> <span class="nav-text">验证调用顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0"><span class="nav-number">5.4.</span> <span class="nav-text">验证调用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E8%B0%83%E7%94%A8%E5%AE%8C%E6%AF%95"><span class="nav-number">5.5.</span> <span class="nav-text">验证调用完毕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">5.6.</span> <span class="nav-text">验证静态方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#private%E5%B1%9E%E6%80%A7%E5%A4%84%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">private属性处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReflectionTestUtils-setField%E6%96%B9%E6%B3%95"><span class="nav-number">6.1.</span> <span class="nav-text">ReflectionTestUtils.setField方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Whitebox-setInternalState%E6%96%B9%E6%B3%95"><span class="nav-number">6.2.</span> <span class="nav-text">Whitebox.setInternalState方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-number">7.</span> <span class="nav-text">私有方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#when%E6%96%B9%E5%BC%8F"><span class="nav-number">7.1.</span> <span class="nav-text">when方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stub%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.2.</span> <span class="nav-text">stub实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-number">7.3.</span> <span class="nav-text">测试私有方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%A7%81%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-number">7.4.</span> <span class="nav-text">验证私有方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"> 
+  <span class="with-love">
+    <i class="fa fa-false"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shary's Blog Since 2018.</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>n
+    </span>
+    
+    <span title="站点总字数">21k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="站点总阅读次数">51 mins.</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      人次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
